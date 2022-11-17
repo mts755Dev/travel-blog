@@ -1,9 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
-import userRoutes from "./routes/user-routes.js";
+import blogrouter from "./routes/blog-routes.js";
+import userRouter from "./routes/user-routes.js";
 const app = express();
 app.use(express.json())
-app.use('/api/user', userRoutes)
+app.use('/api/user', userRouter)
+app.use('/api/blog', blogrouter)
 
 mongoose.connect('mongodb+srv://admin:mongodb.755@cluster0.ruupawa.mongodb.net/Blog?retryWrites=true&w=majority')
   .then(()=> app.listen(5001))
