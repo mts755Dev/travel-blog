@@ -29,19 +29,16 @@ const Auth = () => {
   }
   const handleSubmit= (e) => {
     e.preventDefault();
-    console.log(inputs);
     if(isSignUp){
       sendRequest('signup')
       .then((data)=> localStorage.setItem('userId', data.user._id))
       .then(()=> dispatch(authActions.login()))
       .then(()=> navigate('/blogs'))
-      .then(data => console.log(data));
     } else {
       sendRequest()
       .then((data)=> localStorage.setItem('userId', data.user._id))
       .then(()=> dispatch(authActions.login()))
       .then(()=> navigate('/blogs'))
-      .then(data => console.log(data));
     }
   }
   return (
@@ -52,8 +49,8 @@ const Auth = () => {
           {isSignUp && <TextField name='name' value={inputs.name} onChange={handleChange} placeholder='Name' margin='normal'/> }
           <TextField name='email' value={inputs.email} onChange={handleChange} type={'email'} placeholder='Email' margin='normal'/>
           <TextField name='password' value={inputs.password} onChange={handleChange} type={'password'} placeholder='Password' margin='normal'/>
-          <Button type='submit' sx={{borderRadius:3, marginTop:3}} variant='oulined' color='error'>Submit</Button>
-          <Button onClick={()=>setIsSignUp(!isSignUp)} sx={{borderRadius:3, marginTop:3}} variant='oulined' color='error'>Change To {isSignUp ? "Sign in" : "Sign up"}</Button>
+          <Button type='submit' sx={{borderRadius:3, marginTop:3}} variant='contained' color='primary'>Submit</Button>
+          <Button onClick={()=>setIsSignUp(!isSignUp)} sx={{borderRadius:3, marginTop:3}} color='primary' variant='contained'>Change To {isSignUp ? "Sign in" : "Sign up"}</Button>
         </Box>
       </form>
     </div>

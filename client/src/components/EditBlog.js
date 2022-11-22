@@ -3,13 +3,12 @@ import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
+const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold", color:"black" };
 
-const BlogDetail = () => {
+const EditBlog = () => {
   const navigate = useNavigate();
   const [blog, setBlog] = useState();
   const id = useParams().id;
-  console.log(id);
   const [inputs, setInputs] = useState({});
   const handleChange = (e) => {
     setInputs((prevState) => ({
@@ -29,7 +28,7 @@ const BlogDetail = () => {
       setBlog(data.blog);
       setInputs({
         title: data.blog.title,
-        description: data.blog.description,
+        description: data.blog.description
       });
     });
   }, [id]);
@@ -37,19 +36,16 @@ const BlogDetail = () => {
     const res = await axios
       .put(`http://localhost:5001/api/blog/update/${id}`, {
         title: inputs.title,
-        description: inputs.description,
+        description: inputs.description
       })
       .catch((err) => console.log(err));
 
     const data = await res.data;
     return data;
   };
-  console.log(blog);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
     sendRequest()
-      .then((data) => console.log(data))
       .then(() => navigate("/myBlogs/"));
   };
 
@@ -73,10 +69,10 @@ const BlogDetail = () => {
               fontWeight={"bold"}
               padding={2}
               color="black"
-              variant="h2"
+              variant="h3"
               textAlign={"center"}
             >
-              Post Your Blog
+              Edit Blog
             </Typography>
             <InputLabel sx={labelStyles}>
               Title
@@ -96,8 +92,7 @@ const BlogDetail = () => {
               value={inputs.description}
               margin="normal"
             />
-
-<Button sx={{ mt: 2, borderRadius: 2 }} variant="outlined" color="error" type="submit">Submit</Button>
+            <Button sx={{ mt: 2, borderRadius: 2, maxWidth: '90px', maxHeight: '50px', minWidth: '70px', minHeight: '50px', marginLeft:'auto', marginRight:'auto' }} variant="contained" color="primary" type="submit">Post</Button>
           </Box>
         </form>
       )}
@@ -105,4 +100,4 @@ const BlogDetail = () => {
   );
 };
 
-export default BlogDetail;
+export default EditBlog;

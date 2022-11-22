@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const labelStyles = { mb: 1, mt: 1, fontSize: "20px", fontWeight: "bold" };
+const labelStyles = { mb: 1, mt: 1, fontSize: "20px", fontWeight: "bold", color: "black" };
 const AddBlog = () => {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
@@ -31,9 +31,7 @@ const AddBlog = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
     sendRequest()
-      .then((data) => console.log(data))
       .then(() => navigate("/blogs"));
   };
   return (
@@ -55,10 +53,10 @@ const AddBlog = () => {
             fontWeight={"bold"}
             padding={2}
             color="black"
-            variant="h2"
+            variant="h3"
             textAlign={"center"}
           >
-            Post Your Blog
+            Post Blog
           </Typography>
           <InputLabel sx={labelStyles}>
             Title
@@ -87,7 +85,7 @@ const AddBlog = () => {
             value={inputs.imageURL}
             margin='normal'
           />
-          <Button sx={{ mt: 2, borderRadius: 2 }} variant="outlined" color="error" type="submit">Submit</Button>
+          <Button sx={{ mt: 2, borderRadius: 2, maxWidth: '90px', maxHeight: '50px', minWidth: '70px', minHeight: '50px', marginLeft:'auto', marginRight:'auto' }} variant="contained" color="primary" type="submit">Post</Button>
         </Box>
       </form>
     </div>
