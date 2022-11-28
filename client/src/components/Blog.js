@@ -5,7 +5,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { blue } from "@mui/material/colors";
-const Blog = ({ title, description, imageURL, userName, isUser, id }) => {
+const Blog = ({ title, description, imageURL, userName, isUser, id, setBlogs }) => {
   const navigate = useNavigate();
   const handleEdit = () => {
     navigate(`/myBlogs/${id}`);
@@ -15,12 +15,12 @@ const Blog = ({ title, description, imageURL, userName, isUser, id }) => {
       .delete(`http://localhost:5001/api/blog/${id}`)
       .catch((err) => console.log(err));
     const data = await res.data;
+    setBlogs(prevState => prevState.filter((item) => item.id !== id))
+
     return data;
   };
   const handleDelete = () => {
     deleteRequest()
-      .then(() => navigate("/"))
-      .then(() => navigate("/blogs"));
   };
   return (
     <div>

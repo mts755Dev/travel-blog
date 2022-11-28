@@ -13,7 +13,7 @@ const Blogs = () => {
   };
   useEffect(() => {
     sendRequest().then((data) => setBlogs(data.blogs));
-  }, [blogs]);
+  }, []);
   return (
     <div>
       {blogs &&
@@ -26,6 +26,7 @@ const Blogs = () => {
             description={blog.description}
             imageURL={blog.image}
             userName={blog.user.name}
+            setBlogs={setBlogs}
           />
         ))}
     </div>
