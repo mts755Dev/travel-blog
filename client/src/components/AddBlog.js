@@ -85,7 +85,7 @@ const AddBlog = () => {
             value={inputs.imageURL}
             margin='normal'
           />
-          <Button sx={{ mt: 2, borderRadius: 2, maxWidth: '90px', maxHeight: '50px', minWidth: '70px', minHeight: '50px', marginLeft:'auto', marginRight:'auto' }} variant="contained" color="primary" type="submit">Post</Button>
+          <Button sx={{ mt: 2, borderRadius: 2, maxWidth: '90px', maxHeight: '50px', minWidth: '70px', minHeight: '50px', marginLeft: 'auto', marginRight: 'auto' }} variant="contained" color="primary" type="submit">Post</Button>
         </Box>
       </form>
     </div>
